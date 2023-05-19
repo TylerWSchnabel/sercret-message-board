@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to The Secret Message Board 
+  p Tell us a secret!
+
+  if user 
+    h1 WELCOME BACK #{user.username}
+    a(href="/log-out") LOG OUT
+  else 
+    h3 Login
+    form(action="/log-in" method="POST") 
+        p
+          p  Username: 
+              input(type='text', name='username', value='', placeholder='username')
+          p Password: 
+              input(type="text", name='password', value='', placeholder='password')
+          input(type="submit", value='Submit')
+  
