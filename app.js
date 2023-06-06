@@ -9,6 +9,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const User = require("./models/user");
+const bcrypt = require('bcrypt');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -23,6 +25,11 @@ mongoose.set('strictQuery', false);
 
 
 const mongoDB = process.env.MONGODB_URI
+
+app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.urlencoded({ extended: false }));
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -72,7 +79,7 @@ passport.use(
           return done(null, false, { message: "Incorrect password" })
         }
       })
-      return done(null, user);
+      //return done(null, user);
     } catch(err) {
       return done(err);
     };
@@ -89,29 +96,7 @@ passport.deserializeUser(async function(id, done) {
     done(null, user);
   } catch(err) {
     done(err);
-  };
-});
-
-app.use(function(req, res, next) {
-  res.locals.currentUser = req.user;
-  next();
-});
-
-app.post(
-  "/log-in",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/"
-  })
-);
-
-app.get("/log-out", (req, res, next) => {
-  req.logout(function (err) {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/");
-  });
+  }; 
 });
 
 module.exports = app;

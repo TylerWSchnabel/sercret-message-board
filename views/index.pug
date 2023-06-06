@@ -6,15 +6,15 @@ block content
   p Tell us a secret!
 
   if user 
-    h1 WELCOME BACK #{user.username}
+    h1 Welcome back #{user.username}
     a(href="/log-out") LOG OUT
   else 
     h3 Login
-    form(action="/log-in" method="POST") 
+    form(action="/login" method="POST") 
         p
           p  Username: 
-              input(type='text', name='username', value='', placeholder='username')
+              input(type='text', for='username', name='username', value='', placeholder='username')
           p Password: 
-              input(type="text", name='password', value='', placeholder='password')
+              input(type="text", for='password', name='password', value='', placeholder='password')
           input(type="submit", value='Submit')
   
