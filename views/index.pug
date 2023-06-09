@@ -8,6 +8,14 @@ block content
   if user 
     h1 Welcome back #{user.username}
     a(href="/log-out") LOG OUT
+    p 
+    form(action="/new-message" method="POST")
+      p
+        label(for="message", class="message-label")  New Message: 
+        p 
+        textarea#message(name="message", cols="30", rows="10")
+        p 
+        input(type="submit", value="Submit")
   else 
     h3 Login
     form(action="/login" method="POST") 

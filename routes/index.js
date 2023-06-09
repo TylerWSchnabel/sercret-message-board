@@ -23,5 +23,7 @@ router.get('/log-out', (req, res, next) => {
   });
 })
 
+router.post('/new-message', message_controller.message_create_post);
+
 
 module.exports = router;
