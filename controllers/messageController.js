@@ -16,6 +16,7 @@ exports.message_create_post = [
         const message = new Message({
             user: req.user.username,
             message: req.body.message,
+            time: new Date()
         })
 
         message.save((err) => {
@@ -26,3 +27,13 @@ exports.message_create_post = [
         })
     }
 ]
+
+exports.message_list = async (req, res, next) => {
+    const allMessages = await Message.find({}, "message user time")
+        .sort({time: 1})
+        .populate("message")
+        .populate("user")
+        .exec();
+    
+    res.render("message_list", {message: "Message List", message_list: allMessages});
+  };
