@@ -1,12 +1,40 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: aquamarine;
 }
 
-a {
-  color: #00B7FF;
+.sidebar-nav{
+  list-style: none;
+  background-color:burlywood;
+  height: 100%;
+  margin-left: 0;
+  padding-top: 2rem;
 }
-
+.sidebar-item {
+  text-decoration: none;
+  font-size: 1rem;
+  margin-top: 2rem;
+  color: black;
+}
+.sidebar-link{
+  color: black;
+}
 .message-label{
   font-size: 1.5rem;
+}
+
+.message-box {
+  width: 50vw;
+  border-radius: 8px;
+  background-color: pink;
+  padding: .5rem;
+  margin: .5rem;
+}
+
+.message-content {
+  font-size: 1.25rem;
+}
+.message-user {
+  font-size: 1rem;
 }

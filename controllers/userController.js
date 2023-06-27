@@ -4,6 +4,7 @@ const async = require("async");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require('bcrypt');
 const app = require("../app");
+const passport = require('passport');
 
 exports.user_create_get = (req, res) => {
     res.render("sign-up", {title: "Join the club!"});
@@ -60,4 +61,11 @@ exports.user_create_post = [
         }
     }
 ]
+
+
+exports.user_logout = (req, res, next) => {
+    req.logout(function (err) {
+    res.redirect("/");
+  });
+}
 

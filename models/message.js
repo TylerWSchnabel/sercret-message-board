@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const MessageSchema = new Schema({
-    user: '', 
+    user: { type: String, required: true }, 
     message: { type: String, required: true},
-    time: ''
+    time: {type: Date, required: true}
   });
 
 MessageSchema.virtual("url").get(function () {

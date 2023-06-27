@@ -16,14 +16,14 @@ block content
         textarea#message(name="message", cols="30", rows="10")
         p 
         input(type="submit", value="Submit")
-    p 
-      ul
+    p
+    h3(class='message-title') Messages:
       each message in message_list
-        li
-          p #{message.message}
-          p - #{message.user}
+        div(class='message-box')
+          p(class="message-content") #{message.message}
+          p(class="message-user") -#{message.user}
       else
-        li There are no messages 
+        p There are no messages 
   else 
     h3 Login
     form(action="/login" method="POST") 

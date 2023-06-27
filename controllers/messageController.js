@@ -1,8 +1,8 @@
-const User = require("../models/user");
 const Message = require("../models/message");
 const async = require("async");
 const app = require("../app");
 const { body, validationResult } = require("express-validator");
+const asyncHandler = require('express-async-handler');
 
 exports.message_create_post = [
     body("message", "Message can not be empty")
@@ -28,12 +28,11 @@ exports.message_create_post = [
     }
 ]
 
-exports.message_list = async (req, res, next) => {
-    const allMessages = await Message.find({}, "message user time")
-        .sort({time: 1})
-        .populate("message")
-        .populate("user")
+
+exports.message_list = asyncHandler(async (req, res, next) => {
+    const allMessages = await Message.find({}, "user message time")
+        .sort({ time: -1 })
         .exec();
     
-    res.render("message_list", {message: "Message List", message_list: allMessages});
-  };
+    res.render("index", { message_list: allMessages, user: req.user  });
+    });
