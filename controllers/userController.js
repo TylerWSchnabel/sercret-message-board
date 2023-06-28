@@ -42,7 +42,7 @@ exports.user_create_post = [
             const user = await User.findOne({ username: req.body.username });
             if (user) {
                 res.render('sign-up', {
-                    title: 'Sign up',
+                    title: 'Username taken, try again.',
                     errors: [{msg: 'Username already exists'}],
                 })
             } else { 
@@ -62,6 +62,9 @@ exports.user_create_post = [
     }
 ]
 
+exports.user_login = (req, res, next) => {
+    req.passport.authenticate('local', {successRedirect: "/",failureRedirect: "/"})
+}
 
 exports.user_logout = (req, res, next) => {
     req.logout(function (err) {

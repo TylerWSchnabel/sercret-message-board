@@ -1,12 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to The Secret Message Board 
+  h1 The Secret Message Board 
   p Tell us a secret!
 
   if user 
-    h1 Welcome back #{user.username}
+    h2 Welcome back #{user.username}!
     a(href="/log-out") LOG OUT
     p 
     form(action="/new-message" method="POST")
